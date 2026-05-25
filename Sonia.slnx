@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Sonia.API/Sonia.API.csproj" />
+  <Project Path="Sonia.Application/Sonia.Application.csproj" />
+  <Project Path="Sonia.DataAccess/Sonia.DataAccess.csproj" />
+  <Project Path="Sonia.Domain/Sonia.Domain.csproj" />
+</Solution>
