@@ -1,6 +1,0 @@
-@Sonia.API_HostAddress = http://localhost:5188
-
-GET {{Sonia.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
