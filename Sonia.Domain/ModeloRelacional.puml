@@ -1,0 +1,149 @@
+@startuml
+
+' =========================
+' ENUMS
+' =========================
+
+enum EjemplarEstado {
+    Disponible
+    Prestado
+    Dañado
+    Perdido
+    Reparacion
+}
+
+enum PrestamoEstado {
+    Activo
+    Devuelto
+    Retrasado
+    Perdido
+}
+
+enum RolUsuario {
+    Administrador
+    Bibliotecario
+    Lector
+}
+
+' =========================
+' ENTIDADES
+' =========================
+
+class Usuario {
+    +Id : int
+    +NumeroCuenta : string
+    +PasswordHash : string
+    +Nombre : string
+    +Direccion : string
+    +Telefono : string
+    +Correo : string
+    +Foto : string
+    +Vigencia : bool
+    +Rol : RolUsuario
+    +BibliotecaId : int
+}
+
+class Biblioteca {
+    +Id : int
+    +Nombre : string
+    +Direccion : string
+    +Telefono : string
+    +Ciudad : string
+}
+
+class Libro {
+    +ISBN : string
+    +ClasificacionDewey : string
+    +Titulo : string
+    +Editorial : string
+    +NumeroPaginas : int
+    +Coleccion : string
+    +NotaResumen : string
+    +Imagen : string
+}
+
+class Autor {
+    +Id : int
+    +Nombre : string
+    +Nacionalidad : string
+}
+
+class LibroAutor {
+    +LibroISBN : string
+    +AutorId : int
+}
+
+class Ejemplar {
+    +Id : int
+    +LibroISBN : string
+    +BibliotecaId : int
+    +CodigoBarras : string
+    +Estado : EjemplarEstado
+    +UbicacionFisica : string
+}
+
+class Prestamo {
+    +Id : int
+    +UsuarioId : int
+    +EjemplarId : int
+    +FechaPrestamo : datetime
+    +FechaVencimiento : datetime
+    +FechaDevolucion : datetime
+    +NumeroRenovaciones : int
+    +Estado : PrestamoEstado
+}
+
+class Renovacion {
+    +Id : int
+    +PrestamoId : int
+    +FechaRenovacion : datetime
+    +NuevaFechaVencimiento : datetime
+}
+
+class Multa {
+    +Id : int
+    +UsuarioId : int
+    +PrestamoId : int
+    +Valor : decimal
+    +Motivo : string
+    +Fecha : datetime
+    +Pagada : bool
+}
+
+' =========================
+' RELACIONES
+' =========================
+
+Biblioteca "1" -- "*" Usuario
+Biblioteca "1" -- "*" Ejemplar
+
+Libro "1" -- "*" Ejemplar
+
+Libro "1" -- "*" LibroAutor
+Autor "1" -- "*" LibroAutor
+
+Usuario "1" -- "*" Prestamo
+Ejemplar "1" -- "*" Prestamo
+
+Prestamo "1" -- "*" Renovacion
+
+Usuario "1" -- "*" Multa
+Prestamo "1" -- "*" Multa
+
+' =========================
+' NOTAS
+' =========================
+
+note right of Ejemplar
+No se almacena "Disponible : bool"
+porque la disponibilidad puede derivarse
+del estado y de préstamos activos.
+end note
+
+note right of Usuario
+Las contraseñas no deben almacenarse
+en texto plano.
+Se utiliza PasswordHash.
+end note
+
+@enduml
