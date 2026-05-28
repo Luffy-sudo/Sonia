@@ -1,0 +1,58 @@
+# Build folders
+
+bin/
+obj/
+
+# Visual Studio
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+
+.idea/
+
+# VS Code
+
+.vscode/
+
+# NuGet
+
+packages/
+*.nupkg
+
+# Logs
+
+*.log
+
+# Publish folders
+
+publish/
+
+# EF Core generated temporary files
+
+*.dbmdl
+
+# OS files
+
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Test results
+
+TestResults/
+
+# Coverage
+
+coverage/
+*.coverage
+*.coveragexml
+
+# Local configuration (only if they contain secrets)
+
+appsettings.Development.json
+secrets.json

@@ -10,7 +10,7 @@ namespace Sonia.Domain.Entities
             = string.Empty;
 
         // Navigation Properties
-        public ICollection<LibroAutor> LibrosAutores { get; set; }
+        public ICollection<LibroAutor> LibroAutores { get; set; }
             = new List<LibroAutor>();
     }
 }

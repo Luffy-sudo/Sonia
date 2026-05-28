@@ -23,7 +23,7 @@ namespace Sonia.Domain.Entities
         public ICollection<Ejemplar> Ejemplares { get; set; }
             = new List<Ejemplar>();
 
-        public ICollection<LibroAutor> LibrosAutores { get; set; }
+        public ICollection<LibroAutor> LibroAutores { get; set; }
             = new List<LibroAutor>();
     }
 }
