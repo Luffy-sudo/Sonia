@@ -16,11 +16,11 @@ namespace Sonia.Domain.Entities
 
         public string Correo { get; set; } = string.Empty;
 
-        public byte[] Foto { get; set; } = new byte[0];
+        public byte[] Foto { get; set; } =  Array.Empty<byte>();
 
-        public bool PuedePrestar { get; set; }
+        public bool PuedePrestar { get; set; } = true;
 
-        public DateTime? FechaFinSuspension { get; set; };
+        public DateTime? FechaFinSuspension { get; set; }
 
         public int BibliotecaId { get; set; }
 
