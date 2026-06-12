@@ -8,22 +8,31 @@ namespace Sonia.DataAccess.Configurations
         : IEntityTypeConfiguration<Multa>
     {
         public void Configure(
-            EntityTypeBuilder<Multa> entity)
+            EntityTypeBuilder<Multa> builder)
         {
-            entity.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id);
 
-            entity.Property(x => x.Motivo)
-                .HasMaxLength(250);
+            builder.Property(x => x.DiasRetraso)
+                .IsRequired();
 
-            entity.HasOne(x => x.Usuario)
+            builder.Property(x => x.DiasSuspension)
+                .IsRequired();
+
+            builder.Property(x => x.FechaGeneracion)
+                .IsRequired();
+
+            builder.Property(x => x.Activa)
+                .IsRequired();
+
+            builder.HasOne(x => x.Usuario)
                 .WithMany(x => x.Multas)
                 .HasForeignKey(x => x.UsuarioId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(x => x.Prestamo)
+            builder.HasOne(x => x.Prestamo)
                 .WithMany(x => x.Multas)
                 .HasForeignKey(x => x.PrestamoId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
